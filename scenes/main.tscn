@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://dc2pevyj5vulj"]
+
+[ext_resource type="FontFile" uid="uid://bgtthfc40sokr" path="res://fonts/RobotoCondensed-Medium.ttf" id="1_go6e1"]
+[ext_resource type="Shader" path="res://shaders/onebit.gdshader" id="1_ujxo6"]
+[ext_resource type="Script" path="res://scripts/InputManager.gd" id="3_d7fjh"]
+[ext_resource type="PackedScene" uid="uid://dir1qso16fen1" path="res://prefabs/Top.tscn" id="5_556oj"]
+[ext_resource type="PackedScene" uid="uid://beteobhgp7aje" path="res://prefabs/Clock.tscn" id="6_6iftm"]
+[ext_resource type="PackedScene" uid="uid://detkqy8uu8epj" path="res://prefabs/TheWorld.tscn" id="6_ei7b6"]
+[ext_resource type="PackedScene" uid="uid://djtxkwgt4f661" path="res://prefabs/Coin.tscn" id="7_oxmrp"]
+[ext_resource type="PackedScene" uid="uid://ofc86ca04js3" path="res://prefabs/TheHighPriestess.tscn" id="8_3f20m"]
+[ext_resource type="PackedScene" uid="uid://bfwh72ittlqf1" path="res://prefabs/PiggyBank.tscn" id="9_nlthc"]
+[ext_resource type="PackedScene" uid="uid://cttyxfii85ih7" path="res://prefabs/RubikCube.tscn" id="10_mkbl0"]
+[ext_resource type="PackedScene" uid="uid://b1g60cprh4epc" path="res://prefabs/Apple.tscn" id="11_rdftc"]
+[ext_resource type="PackedScene" uid="uid://8noq0tlc12v5" path="res://prefabs/Joker.tscn" id="12_ja1w5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7el1y"]
+shader = ExtResource("1_ujxo6")
+shader_parameter/size = Vector2(3, 3)
+shader_parameter/threshold = 0.4
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EndLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -399.5
+offset_top = -204.5
+offset_right = 399.5
+offset_bottom = 204.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_go6e1")
+theme_override_font_sizes/font_size = 346
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -53.0
+offset_right = 640.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_go6e1")
+theme_override_font_sizes/font_size = 40
+text = "This is the info label."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_7el1y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bounder" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounder"]
+visible = false
+polygon = PackedVector2Array(24, 24, -64, -64, -64, 768, 1344, 768, 1344, -64, -48, -64, 32, 24, 1256, 24, 1256, 696, 24, 696)
+
+[node name="InputManager" type="Node2D" parent="." node_paths=PackedStringArray("info_label")]
+script = ExtResource("3_d7fjh")
+info_label = NodePath("../CanvasLayer/Label")
+max_speed = 4000.0
+
+[node name="RayCast2D" type="RayCast2D" parent="InputManager"]
+target_position = Vector2(0, 0)
+hit_from_inside = true
+
+[node name="Coin" parent="." instance=ExtResource("7_oxmrp")]
+position = Vector2(795, 457)
+
+[node name="PiggyBank" parent="." instance=ExtResource("9_nlthc")]
+position = Vector2(268, 474)
+
+[node name="TheWorld" parent="." node_paths=PackedStringArray("end_label", "input_manager") instance=ExtResource("6_ei7b6")]
+position = Vector2(1085, 496)
+end_label = NodePath("../CanvasLayer/EndLabel")
+input_manager = NodePath("../InputManager")
+
+[node name="TheHighPriestess" parent="." instance=ExtResource("8_3f20m")]
+position = Vector2(1138, 532)
+
+[node name="Top" parent="." instance=ExtResource("5_556oj")]
+position = Vector2(564, 570)
+
+[node name="Clock" parent="." instance=ExtResource("6_6iftm")]
+position = Vector2(632, 339)
+
+[node name="RubikCube" parent="." instance=ExtResource("10_mkbl0")]
+position = Vector2(965, 277)
+
+[node name="Apple" parent="." instance=ExtResource("11_rdftc")]
+position = Vector2(367, 216)
+
+[node name="Joker" parent="." instance=ExtResource("12_ja1w5")]
+position = Vector2(965, 532)

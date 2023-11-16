@@ -1,0 +1,132 @@
+[gd_scene load_steps=11 format=3 uid="uid://detkqy8uu8epj"]
+
+[ext_resource type="Texture2D" uid="uid://b2g5bdi8bpsxd" path="res://images/tarot_back.png" id="1_ltat0"]
+[ext_resource type="Script" path="res://scripts/Objs/TheWorld.gd" id="1_xf6e6"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_th8vp"]
+[ext_resource type="Texture2D" uid="uid://b2ospjo0fcta2" path="res://images/the_world.png" id="3_cg4r6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kckqq"]
+size = Vector2(64.6865, 116.832)
+
+[sub_resource type="Animation" id="Animation_v6gww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.119, 0.119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ltat0")]
+}
+
+[sub_resource type="Animation" id="Animation_edmm3"]
+resource_name = "flip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.119, 0.119), Vector2(0, 0.119), Vector2(0.119, 0.119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_cg4r6"), ExtResource("3_cg4r6"), ExtResource("3_cg4r6")]
+}
+
+[sub_resource type="Animation" id="Animation_8twse"]
+resource_name = "flip_rev"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.0001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_ltat0"), ExtResource("3_cg4r6"), ExtResource("3_cg4r6"), ExtResource("3_cg4r6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.119, 0.119), Vector2(0, 0.119), Vector2(0.119, 0.119)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o4sd0"]
+_data = {
+"RESET": SubResource("Animation_v6gww"),
+"flip": SubResource("Animation_edmm3"),
+"flip_rev": SubResource("Animation_8twse")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl0cl"]
+size = Vector2(98, 176)
+
+[node name="TheWorld" type="RigidBody2D"]
+collision_mask = 2
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_xf6e6")
+boom_prefab = ExtResource("2_th8vp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, 5)
+scale = Vector2(0.119, 0.119)
+texture = ExtResource("1_ltat0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(1.515, 1.515)
+shape = SubResource("RectangleShape2D_kckqq")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 2.71
+libraries = {
+"": SubResource("AnimationLibrary_o4sd0")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bl0cl")
+
+[node name="Marker2D" type="Marker2D" parent="."]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfwh72ittlqf1"]
+
+[ext_resource type="Script" path="res://scripts/Objs/PiggyBank.gd" id="1_2go3b"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_3un2m"]
+[ext_resource type="Texture2D" uid="uid://w6y2ordwkmgf" path="res://images/piggy_bank.png" id="2_cvin1"]
+[ext_resource type="PackedScene" uid="uid://cjsg6rnimvkve" path="res://prefabs/Milk.tscn" id="3_tjyps"]
+[ext_resource type="PackedScene" uid="uid://cqjkw15fpi4dq" path="res://prefabs/Jar.tscn" id="4_fpxlv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pfdge"]
+radius = 152.296
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aeuq4"]
+radius = 57.0
+
+[node name="PiggyBank" type="RigidBody2D"]
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_2go3b")
+boom_prefab = ExtResource("2_3un2m")
+milk_prefab = ExtResource("3_tjyps")
+jar_prefab = ExtResource("4_fpxlv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.228501, 0.230341)
+texture = ExtResource("2_cvin1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.4399
+shape = SubResource("CircleShape2D_pfdge")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-23, -127)
+shape = SubResource("CircleShape2D_aeuq4")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="MarkerMilk" type="Marker2D" parent="."]
+position = Vector2(-63, -13)
+
+[node name="MarkerJar" type="Marker2D" parent="."]
+position = Vector2(59, -13)

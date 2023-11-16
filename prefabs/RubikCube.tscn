@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cttyxfii85ih7"]
+
+[ext_resource type="Script" path="res://scripts/Objs/RubikCube.gd" id="1_jlde2"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_bmsmp"]
+[ext_resource type="Texture2D" uid="uid://dj51o8j1kftcy" path="res://images/rubik's cube.png" id="2_xkh7r"]
+[ext_resource type="PackedScene" uid="uid://c4ahfboptffrx" path="res://prefabs/Dice.tscn" id="3_jlaux"]
+
+[node name="RubikCube" type="RigidBody2D"]
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+max_contacts_reported = 2
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_jlde2")
+boom_prefab = ExtResource("2_bmsmp")
+dice_prefab = ExtResource("3_jlaux")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.168305, 0.168305)
+texture = ExtResource("2_xkh7r")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -90, -88, -58, -80, 49, 1, 92, 83, 45, 86, -59)
+
+[node name="Marker2D" type="Marker2D" parent="."]

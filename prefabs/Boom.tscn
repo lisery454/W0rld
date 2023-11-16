@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://c4xqu3swnlgc2"]
+
+[ext_resource type="Script" path="res://scripts/Boom.gd" id="1_60iwg"]
+[ext_resource type="Texture2D" uid="uid://dxy6xcle85aao" path="res://images/boom_1.png" id="1_pig5v"]
+[ext_resource type="Texture2D" uid="uid://c0gnltx1tg23v" path="res://images/boom_2.png" id="2_ox5fo"]
+[ext_resource type="Texture2D" uid="uid://knlb5l31s4f2" path="res://images/boom_3.png" id="3_lfsd4"]
+[ext_resource type="Texture2D" uid="uid://bkdixgfgegppb" path="res://images/boom_4.png" id="4_ar5j6"]
+[ext_resource type="Texture2D" uid="uid://cvgksvjcqkbay" path="res://images/boom_5.png" id="5_y3rg0"]
+[ext_resource type="Texture2D" uid="uid://gcrfprc7piwq" path="res://images/boom_6.png" id="6_mq0ll"]
+[ext_resource type="AudioStream" uid="uid://dxosrvnwrpq73" path="res://audios/boom.ogg" id="8_nlvg3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofyts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pig5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ox5fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lfsd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ar5j6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y3rg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mq0ll")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Boom" type="Node2D"]
+script = ExtResource("1_60iwg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.13, 0.13)
+sprite_frames = SubResource("SpriteFrames_ofyts")
+frame = 5
+frame_progress = 1.0
+speed_scale = 0.3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_nlvg3")
+pitch_scale = 5.0

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://8noq0tlc12v5"]
+
+[ext_resource type="Script" path="res://scripts/Objs/Joker.gd" id="1_pn8vs"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_r0yqu"]
+[ext_resource type="Texture2D" uid="uid://r5no4manv5ph" path="res://images/broken_joker.png" id="2_w3hld"]
+[ext_resource type="PackedScene" uid="uid://bobcjtixxl01l" path="res://prefabs/Note.tscn" id="3_clfjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6df2"]
+size = Vector2(108, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4fpb"]
+size = Vector2(104, 152)
+
+[node name="Joker" type="RigidBody2D"]
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_pn8vs")
+boom_prefab = ExtResource("2_r0yqu")
+note_prefab = ExtResource("3_clfjx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.109337, 0.110217)
+texture = ExtResource("2_w3hld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_w6df2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_h4fpb")
+
+[node name="Marker2D" type="Marker2D" parent="."]

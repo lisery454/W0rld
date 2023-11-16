@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://beteobhgp7aje"]
+
+[ext_resource type="Script" path="res://scripts/Objs/Clock.gd" id="1_dxcqm"]
+[ext_resource type="Texture2D" uid="uid://0yurh1novhkb" path="res://images/clock_1.png" id="2_8kppn"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_abc4r"]
+[ext_resource type="Texture2D" uid="uid://c610v8wp1vem8" path="res://images/clock_2.png" id="3_7sa5q"]
+[ext_resource type="PackedScene" uid="uid://bb4rtqhfkfajq" path="res://prefabs/HourHand.tscn" id="3_i5eld"]
+[ext_resource type="Texture2D" uid="uid://db0rdrhulfasn" path="res://images/clock_3.png" id="4_qcopn"]
+[ext_resource type="AudioStream" uid="uid://b37sbi514367k" path="res://audios/mixkit-clock-alarm-beep-1081.ogg" id="5_8kyyk"]
+[ext_resource type="AudioStream" uid="uid://b8ol1amoiq0qu" path="res://audios/mixkit-fast-wall-clock-ticking-1063.ogg" id="6_k64qe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sywat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8kppn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7sa5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qcopn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_32wkp"]
+radius = 86.0
+
+[node name="Clock" type="RigidBody2D"]
+collision_mask = 2
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_dxcqm")
+boom_prefab = ExtResource("2_abc4r")
+hour_hand_prefab = ExtResource("3_i5eld")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.14, 0.14)
+sprite_frames = SubResource("SpriteFrames_sywat")
+frame = 1
+frame_progress = 0.891463
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_32wkp")
+
+[node name="beep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8kyyk")
+
+[node name="close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_k64qe")
+volume_db = 9.533
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-3, 11)

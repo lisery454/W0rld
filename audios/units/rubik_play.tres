@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AudioUnit" load_steps=3 format=3 uid="uid://bioc88kdhmlnr"]
+
+[ext_resource type="AudioStream" uid="uid://bhh23t865pueo" path="res://audios/rubik_play.ogg" id="1_h4vc6"]
+[ext_resource type="Script" path="res://scripts/Global/AudioUnit.gd" id="2_vj3yv"]
+
+[resource]
+script = ExtResource("2_vj3yv")
+audio = ExtResource("1_h4vc6")
+velocity = -1.0

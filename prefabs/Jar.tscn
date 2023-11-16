@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqjkw15fpi4dq"]
+
+[ext_resource type="Script" path="res://scripts/Objs/Jar.gd" id="1_eerqj"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_78wcs"]
+[ext_resource type="Texture2D" uid="uid://n2ogekim6n88" path="res://images/jar.png" id="2_e3qkg"]
+[ext_resource type="PackedScene" uid="uid://d4irg420vsmii" path="res://prefabs/Pill.tscn" id="3_b6k7d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oq0gs"]
+size = Vector2(101, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwyt4"]
+size = Vector2(95, 56.5)
+
+[node name="Jar" type="RigidBody2D"]
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_eerqj")
+boom_size = 1.3
+boom_prefab = ExtResource("2_78wcs")
+pill_prefab = ExtResource("3_b6k7d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.120393, 0.121362)
+texture = ExtResource("2_e3qkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-7.5, -2.5)
+shape = SubResource("RectangleShape2D_oq0gs")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5.5, -35.25)
+shape = SubResource("RectangleShape2D_dwyt4")

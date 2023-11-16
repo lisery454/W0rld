@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AudioUnit" load_steps=3 format=3 uid="uid://cjcwv0kwbd8io"]
+
+[ext_resource type="AudioStream" uid="uid://b2n0cxni77llc" path="res://audios/W0rld-bgm_in.ogg" id="1_d6nih"]
+[ext_resource type="Script" path="res://scripts/Global/AudioUnit.gd" id="2_57p0i"]
+
+[resource]
+script = ExtResource("2_57p0i")
+audio = ExtResource("1_d6nih")
+velocity = 4.0

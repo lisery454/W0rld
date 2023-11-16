@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AudioUnit" load_steps=3 format=3 uid="uid://cakw2dggccu6f"]
+
+[ext_resource type="AudioStream" uid="uid://7ilay6ni1ti4" path="res://audios/mixkit-magic-transition-sweep-presentation-2638.ogg" id="1_rvpx4"]
+[ext_resource type="Script" path="res://scripts/Global/AudioUnit.gd" id="2_y4t3h"]
+
+[resource]
+script = ExtResource("2_y4t3h")
+audio = ExtResource("1_rvpx4")
+velocity = -10.0

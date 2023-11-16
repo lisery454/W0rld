@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4ahfboptffrx"]
+
+[ext_resource type="Script" path="res://scripts/Objs/Dice.gd" id="1_hrl7q"]
+[ext_resource type="Texture2D" uid="uid://bm41w7v8xmila" path="res://images/dice_3.png" id="2_1eifn"]
+[ext_resource type="PackedScene" uid="uid://c4xqu3swnlgc2" path="res://prefabs/Boom.tscn" id="2_lpnoa"]
+[ext_resource type="Texture2D" uid="uid://b7gknu4t5q871" path="res://images/dice_1.png" id="3_6skx1"]
+[ext_resource type="PackedScene" uid="uid://djtxkwgt4f661" path="res://prefabs/Coin.tscn" id="3_u53ip"]
+[ext_resource type="Texture2D" uid="uid://bw2si2wms06pr" path="res://images/dice_5.png" id="4_lmbr6"]
+[ext_resource type="Texture2D" uid="uid://cl2qvsnwi7rux" path="res://images/dice_4.png" id="5_76sh8"]
+[ext_resource type="Texture2D" uid="uid://bct7qaa5k6gae" path="res://images/dice_2.png" id="6_oo2qg"]
+[ext_resource type="Texture2D" uid="uid://c10pc0y7qqd87" path="res://images/dice_6.png" id="7_vvbdd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbc6y"]
+radius = 42.19
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mw3k0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6skx1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6skx1")
+}],
+"loop": true,
+"name": &"dice_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_oo2qg")
+}],
+"loop": true,
+"name": &"dice_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1eifn")
+}],
+"loop": true,
+"name": &"dice_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_76sh8")
+}],
+"loop": true,
+"name": &"dice_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_lmbr6")
+}],
+"loop": true,
+"name": &"dice_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vvbdd")
+}],
+"loop": true,
+"name": &"dice_6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6skx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lmbr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_76sh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1eifn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oo2qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vvbdd")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 10.0
+}]
+
+[node name="Dice" type="RigidBody2D"]
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+max_contacts_reported = 2
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_hrl7q")
+boom_prefab = ExtResource("2_lpnoa")
+coin_prefab = ExtResource("3_u53ip")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mbc6y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -4)
+scale = Vector2(0.0835381, 0.0835381)
+sprite_frames = SubResource("SpriteFrames_mw3k0")
+animation = &"dice_6"
